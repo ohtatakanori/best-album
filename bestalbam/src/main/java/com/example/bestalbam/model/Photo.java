@@ -34,8 +34,8 @@ public class Photo {
     @Column(nullable = false)
     private String place;
 
-    @Column
-    private User user;
+    // @Column
+    // private User user;
 
     public Photo() {
     }
