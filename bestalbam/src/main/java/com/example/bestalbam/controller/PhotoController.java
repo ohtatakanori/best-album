@@ -23,6 +23,7 @@ public class PhotoController {
 
     @GetMapping("/add")
     public String addPhoto(Model model) {
+        model.addAttribute("photo", new Photo());
         return "photos/photo_add";
     }
 
