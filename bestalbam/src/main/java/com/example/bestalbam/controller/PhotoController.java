@@ -22,8 +22,7 @@ public class PhotoController {
     private PhotoService photoService;
 
     @GetMapping("/add")
-    public String addPhoto(@AuthenticationPrincipal UserDetails currentUser, Model model) {
-        model.addAttribute("photo", new Photo());
+    public String addPhoto(Model model) {
         return "photos/photo_add";
     }
 
@@ -47,7 +46,7 @@ public class PhotoController {
         if (!fileExtension.equals("png")) {
             return "redirect:/admin/courses";
         }
-        photoService.pictureUp(file, id);
+        courseService.imageUp(file, id);
         return "redirect:/admin/courses";
     }
 }
