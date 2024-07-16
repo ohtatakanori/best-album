@@ -36,9 +36,11 @@ public class Photo {
     @Column(nullable = false)
     private String place;
 
+    @Column
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
+    
     public Photo() {
     }
 
@@ -98,6 +100,7 @@ public class Photo {
 
     public void setPlace(String place) {
         this.place = place;
+    }
     }
 
     
