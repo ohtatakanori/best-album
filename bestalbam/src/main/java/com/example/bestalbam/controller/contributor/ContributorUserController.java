@@ -1,4 +1,4 @@
-package com.example.bestalbam.controller;
+package com.example.bestalbam.controller.contributor;
 
 import java.util.List;
 
@@ -13,8 +13,8 @@ import com.example.bestalbam.model.User;
 import com.example.bestalbam.service.UserService;
 
 @Controller
-@RequestMapping("/users")
-public class UserController {
+@RequestMapping("/contributor/users")
+public class ContributorUserController {
     @Autowired
     private UserService userService;
 
@@ -22,7 +22,7 @@ public class UserController {
     public String listUser(Model model) {
         List<User> users = userService.findAllUsers();
         model.addAttribute("users", users);
-        return "users/users";
+        return "users/user_list";
     }
 
     @GetMapping("/add")
@@ -34,7 +34,7 @@ public class UserController {
     @PostMapping("/add")
     public String add(User user) {
         userService.saveUser(user);
-        return "redirect:/users";
+        return "redirect:/user_list";
     }
 
     

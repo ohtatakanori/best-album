@@ -1,4 +1,4 @@
-package com.example.bestalbam.controller;
+package com.example.bestalbam.controller.contributor;
 
 
 import java.util.List;
@@ -19,16 +19,16 @@ import com.example.bestalbam.model.Photo;
 import com.example.bestalbam.service.PhotoService;
 
 @Controller
-@RequestMapping("/photos")
-public class PhotoController {
+@RequestMapping("/contributor/photos")
+public class ContributorPhotoController {
     @Autowired
     private PhotoService photoService;
 
-    @GetMapping("list")
-    public String show(Model model){
+    @GetMapping
+    public String listPhoto(Model model){
         List<Photo> photos = photoService.findAllPhotos();
-        model.addAttribute("posts",photos);
-        return "post/post_list";
+        model.addAttribute("photos",photos);
+        return "photos/photo_list";
     }
 
     @GetMapping("/add")
