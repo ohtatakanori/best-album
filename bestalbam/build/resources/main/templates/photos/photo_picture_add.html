@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja" th:replace="~{layout/admin/base :: layout(~{::title},~{::body/content()})}">
+<html lang="ja"xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,8 +10,8 @@
     <div class="container-fluid">
         <div class="row mb-3">
             <div class="col align-self-center">
-                <form th:action="@{/photos/add/pictures}" method="post" enctype="multipart/form-data">
-                    <input type="hidden" th:field="${course.id}">
+                <form th:action="@{/contributor/photos/add/pictures}" method="post" enctype="multipart/form-data">
+                    <!-- <input type="hidden" th:field="${course.id}"> -->
                     <input type="file" name="file" />
                     <input type="submit" value="アップロード" />
                 </form>
