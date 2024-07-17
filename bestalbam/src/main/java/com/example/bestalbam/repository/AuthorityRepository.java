@@ -11,4 +11,7 @@ import com.example.bestalbam.model.Authority;
 @Repository
 public interface AuthorityRepository extends JpaRepository<Authority, Long>{
     Optional<Authority> findByUserId(Long userId);
+
+    // パスワードのハッシュ化
+    Optional<Authority> findByAuthority(String authority);
 }
