@@ -19,14 +19,14 @@
             </th>
         </thead>
         <tbody>
-            <tr th:each = "post:${post}">
+            <tr th:each = "photo : ${photo}">
                 <!-- idはあとでhiddenすること -->
-                <td type="hidden" th:text="${post.id}">ID</td>
-                <td th:text="${post.picture}">画像</td>
-                <td th:text="${post.place}">撮影場所</td>
-                <td th:text="${post.name}">ユーザーネーム</td>
-                <td th:text="${post.comment}">コメント</td>
-                <td th:text="${post.day}">投稿日時</td>
+                <td type="hidden" th:text="${photo.id}">ID</td>
+                <td th:text="${photo.picture}">画像</td>
+                <td th:text="${photo.place}">撮影場所</td>
+                <td th:text="${photo.name}">ユーザーネーム</td>
+                <td th:text="${photo.comment}">コメント</td>
+                <td th:text="${photo.day}">投稿日時</td>
                 <td>
                     <!-- ログイン機能ができてから -->
                     <a th:href="@{}">編集</a>
