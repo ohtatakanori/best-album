@@ -99,6 +99,4 @@ public class Photo {
     public void setPlace(String place) {
         this.place = place;
     }
-
-    
 }
