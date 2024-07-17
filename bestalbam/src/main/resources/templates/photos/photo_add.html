@@ -16,6 +16,7 @@
                             <div class="col">
                                 <a th:href="@{/contributor/photos/add/pictures}">写真の追加</a>
                             </div>
+                            <img th:if="${photo.filepath}" th:src="@{'/' + ${photo.filepath}}" width="60px"/>
                             <div class="col"></div>
                             <div class="col"></div>
                         </div>

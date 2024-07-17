@@ -44,7 +44,7 @@ public class ContributorPhotoController {
     
     @GetMapping("add/pictures")
     public String pictureForm(Model model) {
-        
+        model.addAttribute("photo",new Photo());
         return "photos/photo_picture_add";
     }
 
@@ -56,6 +56,7 @@ public class ContributorPhotoController {
             return "redirect:/admin/courses";
         }
         photoService.pictureUp(file, id);
-        return "redirect:/admin/courses";
+        return "redirect:/contributor/photos/add";
     }
+
 }

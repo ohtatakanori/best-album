@@ -7,13 +7,16 @@
 </head>
 <body>
     <h1>写真ファイルの追加</h1>
+    <!-- <td><img th:if="${photo.filepath}" th:src="@{'/' + ${photo.filepath}}" width="60px"/></td> -->
     <div class="container-fluid">
         <div class="row mb-3">
             <div class="col align-self-center">
-                <form th:action="@{/contributor/photos/add/pictures}" method="post" enctype="multipart/form-data">
+                <form th:action="@{/upload}" method="post" enctype="multipart/form-data">
                     <!-- <input type="hidden" th:field="${course.id}"> -->
-                    <input type="file" name="file" />
+                    <input type="file" name="file" th:field="$*{photo.filepath}"/>
+                    <div>
                     <input type="submit" value="アップロード" />
+                    </div>
                 </form>
             </div>
         </div>
