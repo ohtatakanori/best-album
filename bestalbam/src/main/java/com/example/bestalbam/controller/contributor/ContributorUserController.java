@@ -37,5 +37,13 @@ public class ContributorUserController {
         return "redirect:/user_list";
     }
 
-    
+    // @PostMapping("/add")
+    // public String add(@Valid User user, BindingResult result, Model model) {
+    //     if (result.hasErrors()) {
+    //         model.addAttribute("errors", result.getAllErrors());
+    //         return "users/user-add";
+    //     }
+    //     userService.saveUser(user);
+    //     return "redirect:/contributor/users";
+    // }
 }
