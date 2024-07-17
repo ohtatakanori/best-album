@@ -25,10 +25,6 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-    // 有効・無効フラグ
-    @Column(nullable = false)
-    private boolean enabled;
-
     // 循環参照エラー対策 @JsonManagedReferenceを追加
     // @JsonManagedReference
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)

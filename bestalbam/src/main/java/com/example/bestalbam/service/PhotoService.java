@@ -6,6 +6,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.time.LocalDateTime;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,6 +22,11 @@ import jakarta.transaction.Transactional;
 public class PhotoService {
     @Autowired
     private PhotoRepository photoRepository;
+
+    // 一覧
+    public List<Photo> findAllPhotos(){
+        return photoRepository.findAll();
+    }
 
     // 追加
     @Transactional
