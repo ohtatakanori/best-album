@@ -3,20 +3,24 @@
         <!-- th:replace="~{layout/admin/base :: layout(~{::title},~{::body/content()})}"> -->
 <head>
     <meta charset="UTF-8">
-    <title>ユーザー追加画面</title>
+    <title>ユーザー情報画面</title>
 </head>
 <body>
-    <h1>ユーザーの追加</h1>
+    <h1>ユーザーの新規作成</h1>
     <div class="container-fluid">
         <div class="row mb-3">
             <div class="col align-self-center">
+<<<<<<< HEAD
                 <form th:action="@{/contributor/photos/add}" th:method="post" th:object="${user}">
+=======
+                <form th:action="@{/contributor/users/add}" th:method="post" th:object="${user}">
+>>>>>>> 30f436db97171c9bcd85bc17727a6efbfc555b74
                     <div class="mb-3">
                         <div class="row">
                             <div class="col">
                                 <label for="username" class="form-label">ユーザー名</label>
                                 <input type="text" class="form-control" th:field="*{username}" placeholder="ユーザー名">
-                                <!-- <span class="text-danger" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Error</span> -->
+                                <span class="text-danger" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Error</span>
                             </div>
                             <div class="col"></div>
                             <div class="col"></div>
@@ -27,14 +31,15 @@
                             <div class="col">
                                 <label for="password" class="form-label">パスワード</label>
                                 <input type="password" class="form-control" th:field="*{password}" placeholder="パスワード">
-                                <!-- <span class="text-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Error</span> -->
+                                <span class="text-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Error</span>
                             </div>
                             <div class="col"></div>
                             <div class="col"></div>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-success">ユーザーの作成</button>
+                    <button type="submit" class="btn btn-success">作成</button>
                 </form>
+                <a th:href="@{/contributor/users}">戻る</a>
             </div>
         </div>
     </div>

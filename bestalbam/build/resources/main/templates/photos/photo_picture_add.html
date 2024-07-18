@@ -13,7 +13,7 @@
             <div class="col align-self-center">
                 <form th:action="@{/upload}" method="post" enctype="multipart/form-data">
                     <!-- <input type="hidden" th:field="${course.id}"> -->
-                    <input type="file" name="file" th:field="$*{photo.filepath}"/>
+                    <input type="file" name="file" th:field="${photo.filepath}"/>
                     <div>
                     <input type="submit" value="アップロード" />
                     </div>

@@ -7,10 +7,10 @@
     <!-- <link th:href="@{/style.css}" rel="stylesheet"> -->
 
     <meta charset="UTF-8">
-    <title>ユーザー一覧</title>
+    <title>ユーザー情報画面</title>
 </head>
 <body>
-    <h1>ユーザー一覧</h1>
+    <h1>ユーザーの一覧</h1>
     <table>
         <thead>
             <tr>
@@ -25,13 +25,13 @@
                 <td th:text="${user.username}">名前</td>
                 <td>
                     <a th:href="@{photos/photos}">画像一覧</a>
-                    <a th:href="@{users/edit/{id}(id=${user.id})}">編集</a>
-                    <a th:href="@{/users/delete/{id}(id=${user.id})}">削除</a>
+                    <a th:href="@{/contributor/users/edit/{id}(id=${user.id})}">編集</a>
+                    <a th:href="@{/contributor/users/delete/{id}(id=${user.id})}">削除</a>
                 </td>
             </tr>
         </tbody>
     </table>
-    <a th:href="@{/users/add}">新しいユーザーの作成</a>
+    <a th:href="@{/contributor/users/add}">新しいユーザーの作成</a>
 </body>
 </html>
 

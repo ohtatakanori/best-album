@@ -30,11 +30,13 @@ public class DevAuthenticationFilter extends GenericFilterBean {
         // ダミーの権限を生成
         Authority dummyAuthority = new Authority();
         dummyAuthority.setId(1L); // 仮のID
+        // ダミーアカウントの入れ替えの際に変更
         dummyAuthority.setAuthority("ROLE_CONTRIBUTOR"); // 仮のROLE
 
         // ダミーのユーザーを生成
         User dummyUser = new User();
         dummyUser.setId(1L); // 仮のID
+        // ダミーアカウントの入れ替えの際に変更
         dummyUser.setUsername("dummyViewer"); // 仮のusername
         dummyUser.setPassword("dummyPassword");
         dummyUser.setEnabled(true);
