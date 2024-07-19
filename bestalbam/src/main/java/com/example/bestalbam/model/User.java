@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import org.hibernate.annotations.SQLRestriction;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -21,6 +23,8 @@ import jakarta.persistence.Table;
 // impimport jakarta.validation.constraints.Pattern;
 
 @Entity
+// 削除でfalseの場合は消す
+@SQLRestriction("is_deleted = false")
 @Table(name = "users")
 public class User {
     @Id
@@ -37,6 +41,10 @@ public class User {
     // @NotBlank(message="パスワードは必須です")
     // @Size(min = 5, message="パスワードは5文字以上にしてください")
     private String password;
+
+    // 削除
+    @Column
+    private boolean isDeleted = false;
 
     // 有効・無効フラグ
     @Column(nullable = false)
@@ -60,17 +68,16 @@ public class User {
 
     }
 
-    public User(Long id, String username, String password, boolean enabled, List<Photo> photos,
-            Set<Authority> authorities) {
+    public User(Long id, String username, String password, boolean isDeleted, boolean enabled,
+            Set<Authority> authorities, List<Photo> photos) {
         this.id = id;
         this.username = username;
         this.password = password;
+        this.isDeleted = isDeleted;
         this.enabled = enabled;
-        this.photos = photos;
         this.authorities = authorities;
+        this.photos = photos;
     }
-
-
 
     public Long getId() {
         return id;
@@ -118,6 +125,14 @@ public class User {
 
     public void setAuthorities(Set<Authority> authorities) {
         this.authorities = authorities;
+    }
+
+    public boolean isDeleted() {
+        return isDeleted;
+    }
+
+    public void setDeleted(boolean isDeleted) {
+        this.isDeleted = isDeleted;
     }
     
 }

@@ -43,21 +43,26 @@ public class Photo {
     @Column(nullable = false)
     private String place;
 
+    @Column
+    private boolean isDeleted = false;
+
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
     public Photo() {
     }
 
-    public Photo(Long id, String filepath,int status, String description, LocalDateTime createdAt, LocalDateTime updatedAt,
-            String place) {
+    public Photo(Long id, String filepath, String description, LocalDateTime createdAt, LocalDateTime updatedAt,
+            LocalDateTime deletedAt, String place, boolean isDeleted, User user) {
         this.id = id;
         this.filepath = filepath;
-        this.status = status;
         this.description = description;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
+        this.deletedAt = deletedAt;
         this.place = place;
+        this.isDeleted = isDeleted;
+        this.user = user;
     }
 
     public int getStatus() {
@@ -114,5 +119,8 @@ public class Photo {
 
     public void setPlace(String place) {
         this.place = place;
+    }
+    public void setDeleted(boolean isDeleted) {
+        this.isDeleted = isDeleted;
     }
 }

@@ -7,6 +7,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -54,13 +55,38 @@ public class PhotoService {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        Photo photo = findPhotoById(id);
+        Photo photo = findPictureById(id);
 
         photo.setFilepath(UPLOADED_FOLDER + photoFilename);
 
         return photoRepository.save(photo);
 
     }
+
+    public Photo findPictureById(Long id) {
+        return photoRepository.findById(id)
+            .orElseThrow(() -> new EntityNotFoundException("Course Not Found With id = " + id));
+    }
+
+    
+    // 論理削除
+    public void deletePhotoById(Long id) {
+        // idしか受け取っていないのでidでDBから取得する
+        Optional<Photo> optionalPhoto = photoRepository.findById(id);
+        if (optionalPhoto.isPresent()) {
+            // photo(Id=1)が見つかった場合
+            Photo photo = optionalPhoto.get();
+            // 削除フラグを立てる
+            photo.setDeleted(true);
+            // 削除(delete)ではなく保存(update)する
+            photoRepository.save(photo);
+        }
+    }
+    
+    // データ1件を取得する
+    // public Optional<Photo> findPhotoById(Long id) {
+    //     return photoRepository.findById(id);
+    // }
 
     public Photo findPhotoById(Long id) {
         return photoRepository.findById(id)
@@ -75,6 +101,4 @@ public class PhotoService {
         return photoRepository.findByStatus(status);
     }
 
-    //写真のみのカラムを取得。
-    
 }

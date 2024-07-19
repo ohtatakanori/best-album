@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
-
+        <!-- th:replace="~{layout/admin/base :: layout(~{::title},~{::body/content()})}"> -->
 <head>
-    <section class="add-area" id="contact">
+    <section class="contact-area" id="contact">
     <meta charset="UTF-8">
-    <link  th:href="@{/resources/static/style.css}" rel="stylesheet">
     <title>ユーザー情報画面</title>
 </head>
 <body>
-    <section class="add-area" id="contact">
+    <section class="contact-area" id="contact">
         <div class="container">
 			<h2 class="section-title">
 				<span class="en">Contact</span>
