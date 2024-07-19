@@ -70,7 +70,7 @@ public class ContributorUserController {
 
     @PostMapping("/delete")
     public String delete(User user) {
-        userService.delete(user);
+        userService.deleteUserById(user.getId());
         return "redirect:/contributor/users";
     }
 }

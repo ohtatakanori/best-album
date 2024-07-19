@@ -1,6 +1,7 @@
 package com.example.bestalbam.service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -87,9 +88,44 @@ public class UserService {
         return userRepository.save(user);
     }
 
+    // @Transactional
+    // public void delete(User deletedUser) {
+    // User user = findUserById(deletedUser.getId());
+    // userRepository.save(user);
+    // }
+
+    // // データ1件を取得する
+    // public Optional<User> findByUsername(String username) {
+    //     return userRepository.findByUsernameSQL(username);
+    // }
+
+    // // 論理削除
+    // @Transactional
+    // public void delete(User user) {
+    //     // idしか受け取っていないのでidでDBから取得する
+    //     Optional<User> ListUser = userRepository.findByUsernameSQL(user);
+    //     if (ListUser.isPresent()) {
+    //         // book(Id=1)が見つかった場合
+    //         User user = ListUser.get();
+    //         // 削除フラグを立てる
+    //         user.setDeleted(true);
+    //         // 削除(delete)ではなく保存(update)する
+    //         userRepository.save(user);
+    //     }
+    // }
+
+    // 論理削除
     @Transactional
-    public void delete(User deletedUser) {
-        User user = findUserById(deletedUser.getId());
-        userRepository.save(user);
+    public void deleteUserById(Long id) {
+        // idしか受け取っていないのでidでDBから取得する
+        Optional<User> OptionalUser = userRepository.findById(id);
+        if (OptionalUser.isPresent()) {
+            // book(Id=1)が見つかった場合
+            User user = OptionalUser.get();
+            // 削除フラグを立てる
+            user.setDeleted(true);
+            // 削除(delete)ではなく保存(update)する
+            userRepository.save(user);
+        }
     }
 }

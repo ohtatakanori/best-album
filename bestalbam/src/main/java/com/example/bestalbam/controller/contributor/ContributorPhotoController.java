@@ -45,7 +45,7 @@ public class ContributorPhotoController {
     
     @GetMapping("add/pictures")
     public String pictureForm(@PathVariable("id") Long id, Model model) {
-        Photo photo = photoService.findPhotoById(id);
+        Photo photo = photoService.findPictureById(id);
         model.addAttribute("photo", photo);
         return "/admin/course-image-add";
     }
