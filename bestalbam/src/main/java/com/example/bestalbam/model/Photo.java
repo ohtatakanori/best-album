@@ -18,8 +18,15 @@ public class Photo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+    @Column
+    // (nullable = false)
     private String filepath;
+
+    //1のときが下書き中
+    //2投稿済み
+    //0がデフォ
+    @Column
+    private int status = 0;
     
     @Column(nullable = false)
     private String description;
@@ -42,14 +49,23 @@ public class Photo {
     public Photo() {
     }
 
-    public Photo(Long id, String filepath, String description, LocalDateTime createdAt, LocalDateTime updatedAt,
+    public Photo(Long id, String filepath,int status, String description, LocalDateTime createdAt, LocalDateTime updatedAt,
             String place) {
         this.id = id;
         this.filepath = filepath;
+        this.status = status;
         this.description = description;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
         this.place = place;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 
     public Long getId() {

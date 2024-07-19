@@ -67,5 +67,14 @@ public class PhotoService {
             .orElseThrow(() -> new EntityNotFoundException("Course Not Found With id = " + id));
     }
 
+    public List<Photo> findByFilepath(String Filepath) {
+        return photoRepository.findByFilepath(Filepath);
+    }
 
+    public List<Photo> findByStatus(int status){
+        return photoRepository.findByStatus(status);
+    }
+
+    //写真のみのカラムを取得。
+    
 }

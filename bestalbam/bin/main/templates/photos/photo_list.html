@@ -6,8 +6,11 @@
 </head>
 <body>
     <h1>一覧</h1>
-    <button th:href="@{photos/add}">新規投稿追加</button>
-    <a th:href="@{photos/add}">新規追加</a>
+    <!-- <button th:href="@{photos/add}">新規投稿追加</button> -->
+    <a th:href="@{/contributor/photos/add}">新規投稿追加</a>
+    <div>
+    <a th:href="@{/contributor/users}">ユーザー一覧へ</a>
+    </div>
     <table>
         <thead>
             <tr>
@@ -33,5 +36,6 @@
                     <a th:href="@{}">投稿の削除</a>
         </tbody>
     </table>
+    <a th:href="@{/logout}">ログアウト</a>
 </body>
 </html>
