@@ -63,9 +63,7 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Photo> photos = new ArrayList<>();
 
-
     public User() {
-
     }
 
     public User(Long id, String username, String password, boolean isDeleted, boolean enabled,

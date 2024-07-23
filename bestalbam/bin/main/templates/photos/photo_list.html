@@ -14,6 +14,7 @@
     <table>
         <thead>
             <tr>
+                <th>id</th>
                 <th>画像</th>
                 <th>撮影場所</th>
                 <th>ユーザーネーム</th>
@@ -22,18 +23,21 @@
             </th>
         </thead>
         <tbody>
-            <tr th:each = "photo : ${photo}">
+            <tr th:each = "photo : ${photos}">
                 <!-- idはあとでhiddenすること -->
                 <td type="hidden" th:text="${photo.id}">ID</td>
-                <td th:text="${photo.picture}">画像</td>
-                <td th:text="${photo.place}">撮影場所</td>
-                <td th:text="${photo.name}">ユーザーネーム</td>
-                <td th:text="${photo.comment}">コメント</td>
-                <td th:text="${photo.day}">投稿日時</td>
+                <!-- <td th:text="${photo.filepath}">画像</td> -->
                 <td>
-                    <!-- ログイン機能ができてから -->
-                    <a th:href="@{}">編集</a>
-                    <a th:href="@{}">投稿の削除</a>
+                <img  th:src="@{uploads/images/PNG.png}" width="30px"/>
+                </td>
+                <td th:text="${photo.place}">撮影場所</td>
+                <td th:text="${photo.user.username}">ユーザーネーム</td>
+                <td th:text="${photo.description}">コメント</td>
+                <td th:text="${photo.createdAt}">投稿日時</td>
+                <td>
+                    <!-- <a th:href="@{}">編集</a> -->
+                    <a th:href="@{/contributor/photos/delete/{id}(id=${photo.id})}">投稿の削除</a>
+                </td>
         </tbody>
     </table>
     <a th:href="@{/logout}">ログアウト</a>

@@ -7,12 +7,12 @@
 </head>
 <body>
     <h1>写真ファイルの追加</h1>
-    <!-- <td><img th:if="${photo.filepath}" th:src="@{'/' + ${photo.filepath}}" width="60px"/></td> -->
     <div class="container-fluid">
         <div class="row mb-3">
             <div class="col align-self-center">
-                <form th:action="@{/upload}" method="post" th:object="${photo}" enctype="multipart/form-data">
+                <form th:action="@{/contributor/photos/add/pictures}" method="post"  enctype="multipart/form-data">
                     <input type="file" name="file" />
+                    <input type="text" name="id" th:value="${photo.user.id}">
                     <div>
                     <input type="submit" value="アップロード" />
                     </div>

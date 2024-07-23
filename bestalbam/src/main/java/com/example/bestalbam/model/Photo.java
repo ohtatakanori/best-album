@@ -2,6 +2,8 @@ package com.example.bestalbam.model;
 
 import java.time.LocalDateTime;
 
+import org.hibernate.annotations.SQLRestriction;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -11,7 +13,9 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
+
 @Entity
+@SQLRestriction("is_deleted = false")
 @Table(name = "photos")
 public class Photo {
     @Id
@@ -22,11 +26,11 @@ public class Photo {
     // (nullable = false)
     private String filepath;
 
-    //1のときが下書き中
-    //2投稿済み
-    //0がデフォ
-    @Column
-    private int status = 0;
+    // //1のときが下書き中
+    // //2投稿済み
+    // //0がデフォ
+    // @Column
+    // private int status = 0;
     
     @Column(nullable = false)
     private String description;
@@ -65,13 +69,17 @@ public class Photo {
         this.user = user;
     }
 
-    public int getStatus() {
-        return status;
+    public boolean isDeleted() {
+        return isDeleted;
     }
 
-    public void setStatus(int status) {
-        this.status = status;
-    }
+    // public int getStatus() {
+    //     return status;
+    // }
+
+    // public void setStatus(int status) {
+    //     this.status = status;
+    // }
 
     public Long getId() {
         return id;
@@ -123,4 +131,13 @@ public class Photo {
     public void setDeleted(boolean isDeleted) {
         this.isDeleted = isDeleted;
     }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+    
 }

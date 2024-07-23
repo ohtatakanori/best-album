@@ -1,15 +1,16 @@
 package com.example.bestalbam.controller.contributor;
 
-
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,65 +23,51 @@ import com.example.bestalbam.service.PhotoService;
 @Controller
 @RequestMapping("/contributor/photos")
 public class ContributorPhotoController {
+
     @Autowired
     private PhotoService photoService;
+    // @Autowired
+    // private UserRepository userRepository;
+    // @Autowired
+    // private PhotoRepository photoRepository;
 
     @GetMapping
-    public String listPhoto(Model model){
+    public String listPhoto(Model model) {
         List<Photo> photos = photoService.findAllPhotos();
-        model.addAttribute("photos",photos);
+        model.addAttribute("photos", photos);
         return "photos/photo_list";
     }
 
     @GetMapping("/add")
-    public String addPhoto(@ModelAttribute Photo photo,@AuthenticationPrincipal UserDetails currentPost, Model model) {
-        if (photo.getStatus()==1) {
-            /*
-             * 下書きが1のデータを探す
-             *
-             */
-            //statusが1のものを取得
-            List<Photo> photoData = photoService.findByStatus(1);
-            model.addAttribute("photo",photo);
-            // model.addAttribute("list1",photos);
-            return "photos/photo_add";
-
-        } else {
-            //新規登録する=新しいインスタンス
-            //渡す作業
-            // public String listData1(Model model){
-            List<Photo> photoData = photoService.findAllPhotos();
-            model.addAttribute("list1",photoData);
-            Photo newPhoto = new Photo();
-            newPhoto.setStatus(1);
-            return "photos/photo_add";
-            }
-        }
+    public String addPhoto(Model model) {
+        model.addAttribute("photo",new Photo());
+        return "photos/photo_add";
+    }
 
     @PostMapping("/add")
-    public String add(Photo photo) {
-        photoService.save(photo);
-        return "redirect:/photos/photo_list";
-    }
-    
-    @GetMapping("add/pictures")
-    // public String pictureForm(Model model) {
-    //     model.addAttribute("photo",new Photo());
-    //     return "photos/photo_picture_add";
-    public String pictureForm(@PathVariable("id") Long id, Model model) {
-        Photo photo = photoService.findPictureById(id);
-        model.addAttribute("photo", photo);
-        return "/admin/course-image-add";
+    public String addPhoto(@RequestParam("file") MultipartFile file,Photo photo) {
+        String originalFilename = file.getOriginalFilename();
+        String fileExtension = originalFilename != null
+                ? originalFilename.substring(originalFilename.lastIndexOf(".") + 1).toLowerCase()
+                : "";
+        try {
+            Path path = Paths.get("src/main/resources/static/upload/images/" + originalFilename);
+            Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
+
+            photo.setFilepath(path.toString());
+            photoService.save(photo);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        if (!fileExtension.equals("png")) {
+            return "redirect:/admin/courses";
+        }
+        return "redirect:/contributor/photos";
     }
 
-    @PostMapping("add/pictures")
-    public String pictureUp(@RequestParam("file") MultipartFile file, @RequestParam("id") Long id) {
-        // String originalFilename = file.getOriginalFilename();
-        // String fileExtension = originalFilename != null ? originalFilename.substring(originalFilename.lastIndexOf(".") + 1).toLowerCase() : "";
-        // if (!fileExtension.equals("png")) {
-        //     return "redirect:/admin/courses";
-        // }
-        // photoService.pictureUp(file, id);
-        return "redirect:/contributor/photos/add";
+    @GetMapping("/delete/{id}")
+    public String deletephoto(@PathVariable("id") Long id) {
+        photoService.deletePhotoById(id);
+        return "redirect:/contributor/photos";
     }
 }

@@ -7,25 +7,18 @@
 </head>
 <body>
     <h1>投稿追加</h1>
+    <!-- ユーザー名表示 -->
     <div class="container-fluid">
         <div class="row mb-3">
             <div class="col align-self-center">
-                <form th:action="@{/contributor/photos/add}" th:method="post" th:object="${photo}">
+                <form th:action="@{/contributor/photos/add}" th:method="post" th:object="${photo}" enctype="multipart/form-data">
+                    <h2><span th:text="${user}"></span></h2>
                     <div class="mb-3">
                         <div class="row">
-
-                            
                             <!-- ★ -->
                             <div class="col">
-                                <a th:href="@{/contributor/photos/add/pictures}">写真の追加</a>
+                                <input type="file" name="file" />
                             </div>
-                            <img th:if="${photo.filepath}" th:src="@{'/' + ${photo.filepath}}" width="60px"/>
-                            <div class="col"></div>
-                            <div class="col"></div>
-                        </div>
-
-
-
                     </div>
                     <div class="mb-3">
                         <div class="row">
@@ -41,7 +34,7 @@
                         <div class="row">
                             <div class="col">
                                 <label for="description" class="form-label">コメント</label>
-                                <textarea class="form-control" id="description" th:field="*{description}" rows="3" placeholder="コメントを入力"></textarea>
+                                <textarea class="form-control"  th:field="*{description}" rows="3" placeholder="コメントを入力"></textarea>
                             </div>
                             <div class="col"></div>
                             <div class="col"></div>
