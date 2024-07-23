@@ -33,7 +33,7 @@ public class UserService {
     private EntityManager entityManager;
 
     // パスワードのハッシュ化
-    public User addEnableStudentAndHashPassword(User user) {
+    public User addEnableHashPassword(User user) {
         // 有効化
         user.setEnabled(true);
         // ハッシュ化するクラスの準備

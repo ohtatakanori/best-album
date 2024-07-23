@@ -1,16 +1,25 @@
 <!DOCTYPE html>
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
-        <!-- th:replace="~{base :: layout(~{::title},~{::body/content()})}"> -->
-<head>
-    <!-- base.htmlがあることで下記不要 -->
-    <!-- CSSとの紐づけ -->
-    <!-- <link th:href="@{/style.css}" rel="stylesheet"> -->
 
+<head>
     <meta charset="UTF-8">
+    <link th:href="@{/style.css}" rel="stylesheet">
     <title>ユーザー情報画面</title>
 </head>
+
 <body>
-    <h1>ユーザーの一覧</h1>
+    <header>
+        <h1>ユーザーの一覧</h1>
+            <div>
+                <a th:href="@{/contributor/users/add}">
+                        <img th:src=@{/images/user_add.png} width="30" alt="ユーザー追加のアイコン画像">
+                </a>
+                <a th:href="@{/contributor/photos}">
+                        <img th:src=@{/images/book.jpeg} width="30" alt="アルバムのアイコン画像">
+                </a>
+
+            </div>
+    </header>
     <table>
         <thead>
             <tr>
@@ -30,12 +39,6 @@
             </tr>
         </tbody>
     </table>
-    <div class="more-btn">
-        <a th:href="@{/contributor/users/add}">新しいユーザーの作成</a>
-    </div>
-    <div class="more-btn">
-        <a th:href="@{/contributor/photos}">投稿一覧</a>
-    </div>
 </body>
-</html>
 
+</html>

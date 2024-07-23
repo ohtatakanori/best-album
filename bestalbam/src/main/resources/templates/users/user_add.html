@@ -2,39 +2,34 @@
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <section class="add-area" id="contact">
-    <meta charset="UTF-8">
-    <link  th:href="@{/resources/static/style.css}" rel="stylesheet">
-    <title>ユーザー情報画面</title>
+	<meta charset="UTF-8">
+	<link th:href="@{/style.css}" rel="stylesheet">
+	<title>ユーザー情報画面</title>
 </head>
+
 <body>
-    <section class="add-area" id="contact">
-        <div class="container">
-			<h2 class="section-title">
-				<span class="en">Contact</span>
-				<span class="ja">ユーザーの新規作成</span>
-			</h2>
-			<form th:action="@{/contributor/users/add}" th:method="post" th:object="${user}">
-				<div class="form-group">
-					<label class="form-label">
-						<div class="form-label-text">ユーザー名</div>
-						<input type="text" name="username" placeholder="ユーザー名を入力してください">
-					</label>
-				</div>
-				<div class="form-group">
-					<label class="form-label">
-						<div class="form-label-text">パスワード</div>
-						<input type="password" name="password" placeholder="パスワードを入力してください">
-					</label>
-                    <div class="form-submit-wrap"></div>
-                        <button type="submit" class="btn-submit">送信</button>
-                    </div>
-				</div>
-			</form>
-			<div class="more-btn">
-				<a th:href="@{/contributor/users}">戻る</a>
+	<header>
+		<h1>ユーザーの新規作成</h1>
+		<div>
+			<a th:href="@{/contributor/users}">
+				<img th:src=@{/images/user.png} width="30" alt="ユーザーのアイコン画像">
+			</a>
+			<a th:href="@{/contributor/photos}">
+				<img th:src=@{/images/book.jpeg} width="30" alt="アルバムのアイコン画像">
+			</a>
+		</div>
+	</header>
+	<form th:action="@{/contributor/users/add}" th:method="post" th:object="${user}">
+		<p>ユーザー名</p>
+		<input type="text" name="username" placeholder="ユーザー名を入力してください">
+		<p>パスワード</p>
+		<input type="password" name="password" placeholder="パスワードを入力してください">
+		<div>
+			<div class="between-button">
+				<button type="submit">送信</button>
 			</div>
 		</div>
-	</section>
+	</form>
 </body>
+
 </html>
