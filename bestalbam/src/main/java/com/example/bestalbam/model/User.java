@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Set;
 
 import org.hibernate.annotations.SQLRestriction;
-import org.hibernate.annotations.processing.Pattern;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -37,7 +36,7 @@ public class User {
     private String username;
 
     @Column(nullable = false)
-    @Pattern(regexp = "^[a-zA-Z0-9\\\\-_.$%/]+$", message="半角英数字と一部の記号（-、_、.）のみしか使えません")
+    // @Pattern(regexp = "^[a-zA-Z0-9\\\\-_.$%/]+$", message="半角英数字と一部の記号（-、_、.）のみしか使えません")
     @NotBlank(message="パスワードは必須です")
     @Size(min = 5, message="パスワードは5文字以上にしてください")
     private String password;
@@ -63,9 +62,7 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Photo> photos = new ArrayList<>();
 
-
     public User() {
-
     }
 
     public User(Long id, String username, String password, boolean isDeleted, boolean enabled,

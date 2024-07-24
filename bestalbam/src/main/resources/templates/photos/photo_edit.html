@@ -4,15 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <link th:href="@{/style.css}" rel="stylesheet">
-
-    <title>投稿情報画面</title>
+    <title>ユーザー情報画面</title>
 </head>
 
 <body>
     <header>
-
-        <h1>投稿の追加</h1>
-        <!-- ユーザー名表示 -->
+        <h2>ユーザー情報変更</h2>
         <div>
             <a th:href="@{/contributor/users}">
                 <img th:src=@{/images/user.png} width="30" alt="ユーザーのアイコン画像">
@@ -25,13 +22,9 @@
             </a>
         </div>
     </header>
-
-    <form th:action="@{/contributor/photos/add}" th:method="post" th:object="${photo}" enctype="multipart/form-data">
-        <h2><span th:text="${user}"></span></h2>
-
-        <!-- ★ -->
+    <form th:action="@{/contributor/photos/edit}" th:method="post" th:object="${photo}">
         <p>写真</p>
-        <input type="file" name="file" />
+        <input type="file" th;field="*{file}" />
         <p>位置情報</p>
         <input type="text" th:field="*{place}" placeholder="位置情報を入力">
         <p>コメント</p>
@@ -41,7 +34,7 @@
                 <button type="submit">投稿</button>
             </div>
         </div>
+
     </form>
 </body>
-
 </html>

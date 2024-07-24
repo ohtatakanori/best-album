@@ -16,7 +16,8 @@ public class Photo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+    @Column
+    // (nullable = false)
     private String filepath;
     
     @Column(nullable = false)
@@ -35,19 +36,33 @@ public class Photo {
     private String place;
 
     @Column
+    private String userName;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
     public Photo() {
     }
 
     public Photo(Long id, String filepath, String description, LocalDateTime createdAt, LocalDateTime updatedAt,
-            String place) {
+            String place,String userName) {
         this.id = id;
         this.filepath = filepath;
         this.description = description;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
         this.place = place;
+        this.user = user;
+        this.userName = userName;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public Long getId() {
@@ -96,6 +111,14 @@ public class Photo {
 
     public void setPlace(String place) {
         this.place = place;
+    }
+
+    public User getuser(){
+        return user;
+    }
+
+    public void setUser(User user){
+        this.user = user;
     }
 
     

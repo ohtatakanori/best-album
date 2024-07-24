@@ -12,6 +12,6 @@ public class IndexController {
     @GetMapping
     public String index(@AuthenticationPrincipal UserDetails currentUser, Model model) {
         model.addAttribute("username", currentUser.getUsername());
-        return "photos/photo_list";
+        return "index";
     }
 }

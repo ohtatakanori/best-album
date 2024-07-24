@@ -1,36 +1,53 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <meta charset="UTF-8" xmlns:th="http://www.thymeleaf.org">
-    <title>Document</title>
+    <meta charset="UTF-8">
+    <link th:href="@{/style.css}" rel="stylesheet">
+    <title>投稿情報画面</title>
 </head>
+
 <body>
-    <h1>一覧</h1>
-    <button th:href="@{photos/add}">新規投稿追加</button>
-    <a th:href="@{photos/add}">新規追加</a>
+    <header>
+        <h1>投稿の一覧</h1>
+        <div>
+            <a th:href="@{/contributor/users}">
+                <img th:src=@{/images/user.png} width="30" alt="ユーザーのアイコン画像">
+            </a>
+            <a th:href="@{/contributor/photos/add}">
+                <img th:src=@{/images/book_add.png} width="30" alt="アルバム追加のアイコン画像">
+            </a>
+            <a th:href="@{/logout}">
+                <img th:src=@{/images/logout.png} width="30" alt="ログアウトのアイコン画像">
+            </a>
+        </div>
+    </header>
     <table>
         <thead>
             <tr>
+                <th>id</th>
                 <th>画像</th>
                 <th>撮影場所</th>
                 <th>ユーザーネーム</th>
                 <th>コメント</th>
                 <th>投稿時間</th>
-            </th>
+                </th>
         </thead>
         <tbody>
-            <tr th:each = "photo : ${photo}">
+            <tr th:each="photo : ${photos}">
                 <!-- idはあとでhiddenすること -->
                 <td type="hidden" th:text="${photo.id}">ID</td>
-                <td th:text="${photo.picture}">画像</td>
+                <!-- <td th:text="${photo.filepath}">画像</td> -->
+                <td><img th:src="@{uploads/images/PNG.png}" width="30px"/></td>
                 <td th:text="${photo.place}">撮影場所</td>
-                <td th:text="${photo.name}">ユーザーネーム</td>
-                <td th:text="${photo.comment}">コメント</td>
-                <td th:text="${photo.day}">投稿日時</td>
+                <td th:text="${photo.user.username}">ユーザーネーム</td>
+                <td th:text="${photo.description}">コメント</td>
+                <td th:text="${photo.createdAt}">投稿日時</td>
                 <td>
-                    <!-- ログイン機能ができてから -->
-                    <a th:href="@{}">編集</a>
-                    <a th:href="@{}">投稿の削除</a>
+                    <!-- <a th:href="@{}">編集</a> -->
+                    <a th:href="@{/contributor/photos/edit/{id}(id=${photo.id})}">編集</a>
+                    <a th:href="@{/contributor/photos/delete/{id}(id=${photo.id})}">削除</a>
+                </td>
         </tbody>
     </table>
 </body>

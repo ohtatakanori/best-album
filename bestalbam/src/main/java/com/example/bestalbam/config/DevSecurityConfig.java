@@ -41,10 +41,10 @@ public class DevSecurityConfig {
                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                 // // URL「/」にはログイン無しでもアクセスできる
                 // // .requestMatchers("/").permitAll()
-                // // /study 以降のURLにはロールが「USER」のみアクセス出来る
-                .requestMatchers("/study/**").hasRole("USER")
-                // // /admin 以降のURLにはロールが「ADMIN」のみアクセス出来る
-                .requestMatchers("/admin/**").hasRole("ADMIN")
+                // // /contributor 以降のURLにはロールが「USER」のみアクセス出来る
+                .requestMatchers("/contributor/**").hasRole("CONTRIBUTOR")
+                // // /viewer 以降のURLにはロールが「ADMIN」のみアクセス出来る
+                .requestMatchers("/viewer/**").hasRole("VIEWER")
                 .anyRequest().authenticated()
             );
         return http.build();

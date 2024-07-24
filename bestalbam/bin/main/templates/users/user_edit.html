@@ -17,12 +17,15 @@
             <a th:href="@{/contributor/photos}">
                 <img th:src=@{/images/book.jpeg} width="30" alt="アルバムのアイコン画像">
             </a>
+            <a th:href="@{/logout}">
+                <img th:src=@{/images/logout.png} width="30" alt="ログアウトのアイコン画像">
+            </a>
         </div>
     </header>
     <form th:action="@{/contributor/users/edit}" th:method="post" th:object="${user}">
         <input type="hidden" th:field="*{id}">
         <p>ユーザー名</p>
-        <input type="text" name="username" th:field="*{username}" placeholder="ユーザー名を入力してください">
+        <input type="text" th:field="*{username}" placeholder="ユーザー名を入力してください">
         <div class="between-button">
             <button type="submit">変更</button>
         </div>

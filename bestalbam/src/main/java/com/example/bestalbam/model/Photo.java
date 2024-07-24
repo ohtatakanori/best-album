@@ -13,6 +13,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
+
 @Entity
 @SQLRestriction("is_deleted = false")
 @Table(name = "photos")
@@ -21,8 +22,15 @@ public class Photo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+    @Column
+    // (nullable = false)
     private String filepath;
+
+    // //1のときが下書き中
+    // //2投稿済み
+    // //0がデフォ
+    // @Column
+    // private int status = 0;
     
     @Column(nullable = false)
     private String description;
@@ -39,15 +47,12 @@ public class Photo {
     @Column(nullable = false)
     private String place;
 
-    // 削除
     @Column
     private boolean isDeleted = false;
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
-    
-
     public Photo() {
     }
 
@@ -64,7 +69,17 @@ public class Photo {
         this.user = user;
     }
 
+    public boolean isDeleted() {
+        return isDeleted;
+    }
 
+    // public int getStatus() {
+    //     return status;
+    // }
+
+    // public void setStatus(int status) {
+    //     this.status = status;
+    // }
 
     public Long getId() {
         return id;
@@ -113,19 +128,6 @@ public class Photo {
     public void setPlace(String place) {
         this.place = place;
     }
-
-    public LocalDateTime getDeletedAt() {
-        return deletedAt;
-    }
-
-    public void setDeletedAt(LocalDateTime deletedAt) {
-        this.deletedAt = deletedAt;
-    }
-
-    public boolean isDeleted() {
-        return isDeleted;
-    }
-
     public void setDeleted(boolean isDeleted) {
         this.isDeleted = isDeleted;
     }
@@ -137,5 +139,5 @@ public class Photo {
     public void setUser(User user) {
         this.user = user;
     }
-
+    
 }

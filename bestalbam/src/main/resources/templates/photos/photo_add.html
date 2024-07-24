@@ -1,49 +1,47 @@
 <!DOCTYPE html>
-<html lang="ja" xmlns:th="http://www.thymeleaf.org"
-        th:replace="~{layout/admin/base :: layout(~{::title},~{::body/content()})}">
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
-    <title>BestAlbumの投稿機能</title>
+    <link th:href="@{/style.css}" rel="stylesheet">
+
+    <title>投稿情報画面</title>
 </head>
+
 <body>
-    <h1>投稿追加</h1>
-    <div class="container-fluid">
-        <div class="row mb-3">
-            <div class="col align-self-center">
-                <form th:action="@{/photos/add}" th:method="post" th:object="${photo}">
-                    <div class="mb-3">
-                        <div class="row">
-                            <div class="col">
-                                <a th:href="@{/photos/add/pictures}">写真の追加</a>
-                            </div>
-                            <div class="col"></div>
-                            <div class="col"></div>
-                        </div>
-                    </div>
-                    <div class="mb-3">
-                        <div class="row">
-                            <div class="col">
-                                <label for="name" class="form-label">位置情報</label>
-                                <input type="text" class="form-control" th:field="*{place}" placeholder="位置情報を入力">
-                            </div>
-                            <div class="col"></div>
-                            <div class="col"></div>
-                        </div>
-                    </div>
-                    <div class="mb-3">
-                        <div class="row">
-                            <div class="col">
-                                <label for="description" class="form-label">コメント</label>
-                                <textarea class="form-control" id="description" th:field="*{description}" rows="3" placeholder="コメントを入力"></textarea>
-                            </div>
-                            <div class="col"></div>
-                            <div class="col"></div>
-                        </div>
-                    </div>
-                    <button type="submit" class="btn btn-success">投稿</button>
-                </form>
+    <header>
+
+        <h1>投稿の追加</h1>
+        <!-- ユーザー名表示 -->
+        <div>
+            <a th:href="@{/contributor/users}">
+                <img th:src=@{/images/user.png} width="30" alt="ユーザーのアイコン画像">
+            </a>
+            <a th:href="@{/contributor/photos}">
+                <img th:src=@{/images/book.jpeg} width="30" alt="アルバムのアイコン画像">
+            </a>
+            <a th:href="@{/logout}">
+                <img th:src=@{/images/logout.png} width="30" alt="ログアウトのアイコン画像">
+            </a>
+        </div>
+    </header>
+
+    <form th:action="@{/contributor/photos/add}" th:method="post" th:object="${photo}" enctype="multipart/form-data">
+        <h2><span th:text="${user}"></span></h2>
+
+        <!-- ★ -->
+        <p>写真</p>
+        <input type="file" name="file" />
+        <p>位置情報</p>
+        <input type="text" th:field="*{place}" placeholder="位置情報を入力">
+        <p>コメント</p>
+        <input type="textbox" th:field="*{description}" placeholder="コメントを入力">
+        <div>
+            <div class="between-button">
+                <button type="submit">投稿</button>
             </div>
         </div>
-    </div>
+    </form>
 </body>
+
 </html>

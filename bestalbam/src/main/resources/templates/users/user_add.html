@@ -17,13 +17,16 @@
 			<a th:href="@{/contributor/photos}">
 				<img th:src=@{/images/book.jpeg} width="30" alt="アルバムのアイコン画像">
 			</a>
+			<a th:href="@{/logout}">
+                <img th:src=@{/images/logout.png} width="30" alt="ログアウトのアイコン画像">
+            </a>
 		</div>
 	</header>
-	<form th:action="@{/contributor/users/add}" th:method="post" th:object="${user}">
+	<form th:action="@{/contributor/users/add}" th:method="${post}" th:object="${user}">
 		<p>ユーザー名</p>
-		<input type="text" name="username" placeholder="ユーザー名を入力してください">
+		<input type="text" th:field="*{username}" placeholder="ユーザー名を入力">
 		<p>パスワード</p>
-		<input type="password" name="password" placeholder="パスワードを入力してください">
+		<input type="password" th:field="*{password}" placeholder="パスワードを入力">
 		<div>
 			<div class="between-button">
 				<button type="submit">送信</button>

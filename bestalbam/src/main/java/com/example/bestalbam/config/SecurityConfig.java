@@ -21,7 +21,7 @@ public class SecurityConfig {
         http
             .formLogin(login -> login
                 // ログイン成功時に遷移するURL
-                .defaultSuccessUrl("/photos")
+                .defaultSuccessUrl("/")
                 // ログイン処理を行うURL(POST)
                 // .loginProcessingUrl("/login")
                 // ログインページを表示するURL(GET)

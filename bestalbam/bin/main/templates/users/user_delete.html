@@ -16,6 +16,9 @@
                 <a th:href="@{/contributor/photos}">
                     <img th:src=@{/images/book.jpeg} width="30" alt="アルバムのアイコン画像">
                 </a>
+                <a th:href="@{/logout}">
+                    <img th:src=@{/images/logout.png} width="30" alt="ログアウトのアイコン画像">
+                </a>
             </div>
     </header>
     <form th:action="@{/contributor/users/delete}" th:method="post" th:object="${user}">
