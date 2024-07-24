@@ -35,7 +35,7 @@
         <p>位置情報</p>
         <input type="text" th:field="*{place}" placeholder="位置情報を入力">
         <p>コメント</p>
-        <input type="textbox" th:field="*{description}" placeholder="コメントを入力">
+        <textarea th:field="*{description}" placeholder="コメントを入力"></textarea>
         <div>
             <div class="between-button">
                 <button type="submit">投稿</button>

@@ -40,7 +40,7 @@ public class ContributorPhotoController {
 
     @GetMapping("/add")
     public String addPhoto(Model model) {
-        model.addAttribute("photo",new Photo());
+        model.addAttribute("photo", new Photo());
         return "photos/photo_add";
     }
 
