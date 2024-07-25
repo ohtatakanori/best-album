@@ -32,11 +32,9 @@ public class User {
 
     @Column(nullable = false, unique = true)
     @NotBlank(message="ユーザー名の入力は必須です")
-    @Size(min = 1, max = 10, message="ユーザー名は1から10文字までにして下さい")
     private String username;
-
+    
     @Column(nullable = false)
-    // @Pattern(regexp = "^[a-zA-Z0-9\\\\-_.$%/]+$", message="半角英数字と一部の記号（-、_、.）のみしか使えません")
     @NotBlank(message="パスワードは必須です")
     @Size(min = 5, message="パスワードは5文字以上にしてください")
     private String password;

@@ -17,6 +17,8 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Join;
+import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
 import jakarta.transaction.Transactional;
 
@@ -52,13 +54,52 @@ public class UserService {
     }
 
     // 一覧
-    public List<User> findAllUsers() {
-        return userRepository.findAll();
+    // public List<User> findAllUsers() {
+    //     return userRepository.findAll();
+    // }
+
+    // 追加部分
+    // Authorityの紐づけ
+    public List<User> findAll() {
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<User> cq = cb.createQuery(User.class);
+        Root<User> user = cq.from(User.class);
+        // ここからクエリをビルドする
+        cq.select(user);
+        // Join
+        Join<User, Authority> authorities = user.join("authorities");
+        // 条件
+        Predicate condition = cb.and(
+            cb.equal(authorities.get("authority"), "ROLE_CONTRIBUTOR"),
+            cb.equal(user.get("enabled"), true)
+        );
+        cq.where(condition);
+        // Join終わり
+
+        // 実行する
+        return entityManager.createQuery(cq).getResultList();
     }
 
     // 追加
     public User saveUser(User user) {
         return userRepository.save(user);
+    }
+
+    // ユーザー名重複チェック
+    public boolean checkUnique(User user) {
+        boolean isCreatingNew = (user.getId() == null || user.getId() == 0);
+        User userByUsername = userRepository.findByUsername(user.getUsername());
+
+        if (isCreatingNew) {
+            if (userByUsername != null) {
+                return false;
+            }
+        } else {
+            if (userByUsername != null && userByUsername.getId() != user.getId()) {
+                return false;
+            }
+        }
+        return true;
     }
 
     // 編集

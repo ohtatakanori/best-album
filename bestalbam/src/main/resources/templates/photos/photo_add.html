@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <link th:href="@{/style.css}" rel="stylesheet">
 
-    <title>投稿情報画面</title>
+    <title>投稿情報作成画面</title>
 </head>
 
 <body>
@@ -27,7 +27,7 @@
     </header>
 
     <form th:action="@{/contributor/photos/add}" th:method="post" th:object="${photo}" enctype="multipart/form-data">
-        <h2><span th:text="${user}"></span></h2>
+        <span th:text="${user}"></span>
 
         <!-- ★ -->
         <p>写真</p>

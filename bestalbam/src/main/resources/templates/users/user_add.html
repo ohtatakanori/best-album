@@ -22,11 +22,15 @@
             </a>
 		</div>
 	</header>
-	<form th:action="@{/contributor/users/add}" th:method="${post}" th:object="${user}">
+	<form th:action="@{/contributor/users/add}" th:method="post" th:object="${user}">
 		<p>ユーザー名</p>
 		<input type="text" th:field="*{username}" placeholder="ユーザー名を入力">
+		<!-- <span class="text-danger" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Error</span> -->
+		<span class="text-danger" th:if = "${error} != ''" th:text="${error}">Error</span>
+		<!-- <span class="text-danger" th:onclick = "'alert(\'' + ${error} + '\');'" th:text="${error}">Error</span> -->
 		<p>パスワード</p>
 		<input type="password" th:field="*{password}" placeholder="パスワードを入力">
+		<span class="text-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Error</span>
 		<div>
 			<div class="between-button">
 				<button type="submit">送信</button>
