@@ -30,6 +30,10 @@ public class Photo {
     @Column(nullable = false)
     private String description;
 
+    @Column
+    // (nullable = false)
+    private String filepath;
+
     // @Column(nullable = false)
     // private LocalDateTime createdAt;
 
@@ -53,7 +57,7 @@ public class Photo {
 
     public Photo(Long id, String filepath, String description,String place, boolean isDeleted) {
         this.id = id;
-        // this.filepath = filepath;
+        this.filepath = filepath;
         this.description = description;
         // this.createdAt = createdAt;
         // this.updatedAt = updatedAt;
@@ -83,13 +87,13 @@ public class Photo {
         this.id = id;
     }
 
-    // public String getFilepath() {
-    //     return filepath;
-    // }
+    public String getFilepath() {
+        return filepath;
+    }
 
-    // public void setFilepath(String filepath) {
-    //     this.filepath = filepath;
-    // }
+    public void setFilepath(String filepath) {
+        this.filepath = filepath;
+    }
 
     public String getDescription() {
         return description;

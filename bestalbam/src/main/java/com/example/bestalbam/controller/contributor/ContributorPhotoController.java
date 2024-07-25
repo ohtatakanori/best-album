@@ -51,9 +51,9 @@ public class ContributorPhotoController {
                 ? originalFilename.substring(originalFilename.lastIndexOf(".") + 1).toLowerCase()
                 : "";
         try {
-            Path path = Paths.get("/bestalbam/uploads/" + originalFilename);
+            Path path = Paths.get("./bestalbam/src/main/resources/static/upload/images/" + originalFilename);
             Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
-            photo.setFilepath(path.toString());
+            photo.setFilepath(originalFilename);
             photoService.save(photo);
         } catch (IOException e) {
             e.printStackTrace();

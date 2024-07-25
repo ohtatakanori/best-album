@@ -21,37 +21,20 @@ public class PhotoService {
         return photoRepository.findAll();
     }
 
-    @Transactional
-    public Photo save(Photo photo) {
-            // セキュリティコンテキストからユーザー名を取得
-    // Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-    // String username = authentication.getName();
+    // public Photo save(Photo photo) {
+    // //         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+    // // String username = authentication.getName();
     // // ユーザー名から User オブジェクトを取得
-    // User user = userRepository.findByUsername(username);
-    //     photo.setCreatedAt(LocalDateTime.now());
-    //     photo.setUser(user);
+    // // User user = userRepository.findByUsername(username);
+    //     // photo.setCreatedAt(LocalDateTime.now());
+    //     // photo.setUser(user);
     //     return photoRepository.save(photo);
     // }
-    return photoRepository.save(photo);
-    }
     
     public Photo findPictureById(Long id) {
         return photoRepository.findById(id)
             .orElseThrow(() -> new EntityNotFoundException("Course Not Found With id = " + id));
     }
-    // // 論理削除
-    // public void deletePhotoById(Long id) {
-    //     // idしか受け取っていないのでidでDBから取得する
-    //     Optional<Photo> optionalPhoto = photoRepository.findById(id);
-    //     if (optionalPhoto.isPresent()) {
-    //         // photo(Id=1)が見つかった場合
-    //         Photo photo = optionalPhoto.get();
-    //         // 削除フラグを立てる
-    //         photo.setDeleted(true);
-    //         // 削除(delete)ではなく保存(update)する
-    //         photoRepository.save(photo);
-    //     }
-    // }
     
     public Photo findPhotoById(Long id) {
         return photoRepository.findById(id)
@@ -76,5 +59,16 @@ public class PhotoService {
 
         return photoRepository.save(photo);
     }
+        public Photo save(Photo photo) {
+    //         // セキュリティコンテキストからユーザー名を取得
+    // Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+    // String username = authentication.getName();
+    // // ユーザー名から User オブジェクトを取得
+    // User user = userRepository.findByUsername(username);
+    //     photo.setCreatedAt(LocalDateTime.now());
+        // photo.setUser(user);
+        return photoRepository.save(photo);
+    }
+
 
 }

@@ -15,7 +15,7 @@
         <thead>
             <tr>
                 <th>id</th>
-                <!-- <th>画像</th> -->
+                <th>画像</th>
                 <th>撮影場所</th>
                 <!-- <th>ユーザーネーム</th> -->
                 <th>コメント</th>
@@ -25,9 +25,9 @@
         <tbody>
             <tr th:each = "photo : ${photos}">
                 <td type="hidden" th:text="${photo.id}">ID</td>
-                <!-- <td>
+                <td>
                 <img th:src="@{${photo.filepath}}" width="px"/>
-                </td> -->
+                </td>
                 <td th:text="${photo.place}">撮影場所</td>
                 <!-- <td th:text="${photo.user.username}">ユーザーネーム</td> -->
                 <td th:text="${photo.description}">コメント</td>
