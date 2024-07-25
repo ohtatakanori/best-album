@@ -51,16 +51,12 @@ public class ContributorPhotoController {
                 ? originalFilename.substring(originalFilename.lastIndexOf(".") + 1).toLowerCase()
                 : "";
         try {
-            Path path = Paths.get("src/main/resources/static/upload/images/" + originalFilename);
+            Path path = Paths.get("/bestalbam/uploads/" + originalFilename);
             Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
-
             photo.setFilepath(path.toString());
             photoService.save(photo);
         } catch (IOException e) {
             e.printStackTrace();
-        }
-        if (!fileExtension.equals("png")) {
-            return "redirect:/admin/courses";
         }
         return "redirect:/contributor/photos";
     }
@@ -70,4 +66,12 @@ public class ContributorPhotoController {
         photoService.deletePhotoById(id);
         return "redirect:/contributor/photos";
     }
+
+    @GetMapping("/edit/{id}")
+    public String editPhoto(@PathVariable("id") Long id,Model model){
+        Photo photo = photoService.findPhotoById(id);
+        model.addAttribute("photo",photo);
+        return "photo_edit";
+    }
+
 }

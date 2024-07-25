@@ -24,18 +24,15 @@
         </thead>
         <tbody>
             <tr th:each = "photo : ${photos}">
-                <!-- idはあとでhiddenすること -->
                 <td type="hidden" th:text="${photo.id}">ID</td>
-                <!-- <td th:text="${photo.filepath}">画像</td> -->
                 <td>
-                <img  th:src="@{uploads/images/PNG.png}" width="30px"/>
+                <img th:src="@{${photo.filepath}}" width="px"/>
                 </td>
                 <td th:text="${photo.place}">撮影場所</td>
                 <td th:text="${photo.user.username}">ユーザーネーム</td>
                 <td th:text="${photo.description}">コメント</td>
                 <td th:text="${photo.createdAt}">投稿日時</td>
                 <td>
-                    <!-- <a th:href="@{}">編集</a> -->
                     <a th:href="@{/contributor/photos/delete/{id}(id=${photo.id})}">投稿の削除</a>
                 </td>
         </tbody>

@@ -10,14 +10,13 @@
     <div class="container-fluid">
         <div class="row mb-3">
             <div class="col align-self-center">
-                <form th:action="@{/contributor/photos/add}" th:method="post" th:object="${photo}" enctype="multipart/form-data">
-                    <h2><span th:text="${user}"></span></h2>
+                <form th:action="@{/contributor/photos/add}" th:method="post" th:object="${photo}" >
+                    <!-- <h2><span th:text="${user}"></span></h2> -->
                     <div class="mb-3">
                         <div class="row">
-                            <!-- ★ -->
-                            <div class="col">
+                            <!-- <div class="col">
                                 <input type="file" name="file" />
-                            </div>
+                            </div> -->
                     </div>
                     <div class="mb-3">
                         <div class="row">

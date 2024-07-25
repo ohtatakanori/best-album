@@ -15,9 +15,9 @@
         <thead>
             <tr>
                 <th>id</th>
-                <th>画像</th>
+                <!-- <th>画像</th> -->
                 <th>撮影場所</th>
-                <th>ユーザーネーム</th>
+                <!-- <th>ユーザーネーム</th> -->
                 <th>コメント</th>
                 <th>投稿時間</th>
             </th>
@@ -25,18 +25,18 @@
         <tbody>
             <tr th:each = "photo : ${photos}">
                 <td type="hidden" th:text="${photo.id}">ID</td>
-                <td>
+                <!-- <td>
                 <img th:src="@{${photo.filepath}}" width="px"/>
-                </td>
+                </td> -->
                 <td th:text="${photo.place}">撮影場所</td>
-                <td th:text="${photo.user.username}">ユーザーネーム</td>
+                <!-- <td th:text="${photo.user.username}">ユーザーネーム</td> -->
                 <td th:text="${photo.description}">コメント</td>
-                <td th:text="${photo.createdAt}">投稿日時</td>
-                <td>
+                <!-- <td th:text="${photo.createdAt}">投稿日時</td> -->
+                <!-- <td>
                     <a th:href="@{/contributor/photos/delete/{id}(id=${photo.id})}">投稿の削除</a>
-                </td>
+                </td> -->
         </tbody>
     </table>
-    <a th:href="@{/logout}">ログアウト</a>
+    <!-- <a th:href="@{/logout}">ログアウト</a> -->
 </body>
 </html>
